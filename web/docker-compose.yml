@@ -1,0 +1,98 @@
+version: "3"
+
+services:
+  mariadb:
+    image: wodby/mariadb:$MARIADB_TAG
+    container_name: "${PROJECT_NAME}_mariadb"
+    stop_grace_period: 30s
+    environment:
+      MYSQL_ROOT_PASSWORD: $DB_ROOT_PASSWORD
+      MYSQL_DATABASE: $DB_NAME
+      MYSQL_USER: $DB_USER
+      MYSQL_PASSWORD: $DB_PASSWORD
+
+  php:
+    image: wodby/wordpress-php:$PHP_TAG
+    container_name: "${PROJECT_NAME}_php"
+    environment:
+      PHP_SENDMAIL_PATH: /usr/sbin/sendmail -t -i -S mailhog:1025
+      DB_HOST: $DB_HOST
+      DB_USER: $DB_USER
+      DB_PASSWORD: $DB_PASSWORD
+      DB_NAME: $DB_NAME
+      PHP_FPM_USER: wodby
+      PHP_FPM_GROUP: wodby
+      PHP_BLACKFIRE: 1
+      BLACKFIRE_CLIENT_ID: "59e90700-5d71-4592-a9df-03dd5dd722d4"
+      BLACKFIRE_CLIENT_TOKEN: "1fd23ef15274cee97406d0f5754f93cc5c72f41d7f6c78e77f6b9712932676db"
+    volumes:
+      - ./:/var/www/html
+## For macOS users (https://wodby.com/stacks/wordpress/docs/local/docker-for-mac/)
+#      - ./:/var/www/html:cached # User-guided caching
+#      - docker-sync:/var/www/html # Docker-sync
+
+  nginx:
+    image: wodby/nginx:$NGINX_TAG
+    container_name: "${PROJECT_NAME}_nginx"
+    depends_on:
+      - php
+      - blackfire
+    environment:
+      NGINX_STATIC_OPEN_FILE_CACHE: "off"
+      NGINX_ERROR_LOG_LEVEL: debug
+      NGINX_BACKEND_HOST: php
+      NGINX_VHOST_PRESET: wordpress
+      #NGINX_SERVER_ROOT: /var/www/html/subdir
+    volumes:
+      - ./:/var/www/html
+# Options for macOS users (https://wodby.com/stacks/wordpress/docs/local/docker-for-mac/)
+#      - ./:/var/www/html:cached # User-guided caching
+#      - docker-sync:/var/www/html # Docker-sync
+    labels:
+      - 'traefik.backend=${PROJECT_NAME}_nginx'
+      - 'traefik.port=80'
+      - 'traefik.frontend.rule=Host:${PROJECT_BASE_URL}'
+
+  mailhog:
+    image: mailhog/mailhog
+    container_name: "${PROJECT_NAME}_mailhog"
+    labels:
+      - 'traefik.backend=${PROJECT_NAME}_mailhog'
+      - 'traefik.port=8025'
+      - 'traefik.frontend.rule=Host:mailhog.${PROJECT_BASE_URL}'
+
+  blackfire:
+    image: blackfire/blackfire
+    container_name: "${PROJECT_NAME}_blackfire"
+    environment:
+      BLACKFIRE_SERVER_ID: "f3dcdf1a-d413-4100-abf5-8ffa93e17207"
+      BLACKFIRE_SERVER_TOKEN: "b3de768d45a52c4b78c8881540532a5f4a797969bb3d88e7af9ea4d3446f1578"
+      BLACKFIRE_CLIENT_ID: "59e90700-5d71-4592-a9df-03dd5dd722d4"
+      BLACKFIRE_CLIENT_TOKEN: "1fd23ef15274cee97406d0f5754f93cc5c72f41d7f6c78e77f6b9712932676db"
+
+  portainer:
+    image: portainer/portainer
+    container_name: "${PROJECT_NAME}_portainer"
+    command: --no-auth -H unix:///var/run/docker.sock
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    labels:
+      - 'traefik.backend=${PROJECT_NAME}_portainer'
+      - 'traefik.port=9000'
+      - 'traefik.frontend.rule=Host:portainer.${PROJECT_BASE_URL}'
+
+  traefik:
+    image: traefik
+    container_name: "${PROJECT_NAME}_traefik"
+    command: -c /dev/null --web --docker --logLevel=INFO
+    ports:
+      - '8000:80'
+#      - '8080:8080' # Dashboard
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+#volumes:
+## Docker-sync for macOS users
+#  docker-sync:
+#    external: true
+

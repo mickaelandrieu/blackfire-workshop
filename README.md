@@ -11,7 +11,7 @@ In `web/docker-compose.yml` file, change:
 * `BLACKFIRE_SERVER_ID`
 * `BLACKFIRE_SERVER_TOKEN`
 
-by your Blackfire credentials.
+by your [Blackfire credentials](https://blackfire.io/my/settings/credentials) (you need to log in).
 
 
 * Clone this repository, in `web` folder do "make up"
@@ -21,11 +21,13 @@ by your Blackfire credentials.
 
 ### Blackfire curl
 
+=> Once Wordpress Web installation process is done, trigger a build for "http://wp.docker.localhost:8000/?p=1"
+
 ```
 make blackfire "curl nginx/?p=1"
 ```
 
-On Mac
+> On Mac
 
 ```
 docker-compose run blackfire blackfire curl "nginx/?p=1"

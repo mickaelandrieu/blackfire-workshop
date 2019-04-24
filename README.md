@@ -11,7 +11,7 @@ In `web/docker-compose.yml` file, change:
 * `BLACKFIRE_SERVER_ID`
 * `BLACKFIRE_SERVER_TOKEN`
 
-by your Blackfire credentials.
+by your [Blackfire credentials](https://blackfire.io/my/settings/credentials) (you need to log in).
 
 
 * Clone this repository, in `web` folder do "make up"

@@ -27,6 +27,14 @@ by your [Blackfire credentials](https://blackfire.io/my/settings/credentials) (y
 make blackfire "curl nginx/?p=1"
 ```
 
+> On Mac
+
+```
+docker-compose run blackfire blackfire curl "nginx/?p=1"
+```
+
+=> trigger a build for "http://wp.docker.localhost:8000/?p=1"
+
 ### Domains
 
 On Google Chrome, should works else add the virtual host:

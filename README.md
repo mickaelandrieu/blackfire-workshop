@@ -21,11 +21,11 @@ by your Blackfire credentials.
 
 ### Blackfire curl
 
+=> Once Wordpress Web installation process is done, trigger a build for "http://wp.docker.localhost:8000/?p=1"
+
 ```
 make blackfire "curl nginx/?p=1"
 ```
-
-=> trigger a build for "http://wp.docker.localhost:8000/?p=1"
 
 ### Domains
 

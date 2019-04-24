@@ -16,7 +16,7 @@ In `.env` file, complete these fields:
 by your [Blackfire credentials](https://blackfire.io/my/settings/credentials) (you need to log in).
 
 
-* Clone this repository, in `web` folder do "make up"
+* Clone this repository, in `web` folder. Execute "make up" in the terminal.
 * Access "http://wp.docker.localhost:8000"
 * The End.
 
@@ -35,7 +35,6 @@ by your [Blackfire credentials](https://blackfire.io/my/settings/credentials) (y
 make blackfire "curl nginx/?p=1"
 ```
 
-<<<<<<< HEAD
 On Mac
 
 ```
@@ -44,8 +43,6 @@ docker-compose run blackfire blackfire curl "nginx/?p=1"
 
 => trigger a build for "http://wp.docker.localhost:8000/?p=1"
 
-=======
->>>>>>> 0830202... Improved README
 ### Domains
 
 On Google Chrome, should works else add the virtual host:

@@ -23,8 +23,8 @@ services:
       PHP_FPM_USER: wodby
       PHP_FPM_GROUP: wodby
       PHP_BLACKFIRE: 1
-      BLACKFIRE_CLIENT_ID: "59e90700-5d71-4592-a9df-03dd5dd722d4"
-      BLACKFIRE_CLIENT_TOKEN: "1fd23ef15274cee97406d0f5754f93cc5c72f41d7f6c78e77f6b9712932676db"
+      BLACKFIRE_CLIENT_ID: $BLACKFIRE_CLIENT_ID
+      BLACKFIRE_CLIENT_TOKEN: $BLACKFIRE_CLIENT_TOKEN
     volumes:
       - ./:/var/www/html
 ## For macOS users (https://wodby.com/stacks/wordpress/docs/local/docker-for-mac/)
@@ -65,10 +65,10 @@ services:
     image: blackfire/blackfire
     container_name: "${PROJECT_NAME}_blackfire"
     environment:
-      BLACKFIRE_SERVER_ID: "f3dcdf1a-d413-4100-abf5-8ffa93e17207"
-      BLACKFIRE_SERVER_TOKEN: "b3de768d45a52c4b78c8881540532a5f4a797969bb3d88e7af9ea4d3446f1578"
-      BLACKFIRE_CLIENT_ID: "59e90700-5d71-4592-a9df-03dd5dd722d4"
-      BLACKFIRE_CLIENT_TOKEN: "1fd23ef15274cee97406d0f5754f93cc5c72f41d7f6c78e77f6b9712932676db"
+      BLACKFIRE_SERVER_ID: $BLACKFIRE_SERVER_ID
+      BLACKFIRE_SERVER_TOKEN: $BLACKFIRE_SERVER_TOKEN
+      BLACKFIRE_CLIENT_ID: $BLACKFIRE_CLIENT_ID
+      BLACKFIRE_CLIENT_TOKEN: $BLACKFIRE_CLIENT_TOKEN
 
   portainer:
     image: portainer/portainer

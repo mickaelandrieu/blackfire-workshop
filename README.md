@@ -14,7 +14,7 @@ In `web/docker-compose.yml` file, change:
 by your [Blackfire credentials](https://blackfire.io/my/settings/credentials) (you need to log in).
 
 
-* Clone this repository, in `web` folder do "make up"
+* Clone this repository, in `web` folder. Execute "make up" in the terminal.
 * Access "http://wp.docker.localhost:8000"
 * The End.
 

@@ -43,6 +43,8 @@ docker-compose run blackfire blackfire curl "nginx/?p=1"
 
 => trigger a build for "http://wp.docker.localhost:8000/?p=1"
 
+> In case of double quotes issue, rely on docker-compose binary: ``docker-compose run blackfire blackfire curl '<your-curl-request>'``
+
 ### Domains
 
 On Google Chrome, should works else add the virtual host:

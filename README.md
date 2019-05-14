@@ -37,6 +37,12 @@ by your [Blackfire credentials](https://blackfire.io/my/settings/credentials) (y
 make blackfire "curl nginx/?p=1"
 ```
 
+***Profil PHP file with blackfire***
+
+```
+docker-compose run php blackfire run php <php-file-to-tests.php>
+```
+
 On Mac
 
 ```
@@ -51,7 +57,7 @@ docker-compose run blackfire blackfire curl "nginx/?p=1"
 
 On Google Chrome, should works else add the virtual host:
 
-Add 
+Add
 ```
 127.0.0.1 wp.docker.localhost
 ```

@@ -1,3 +1,6 @@
 .idea/
 .docker-sync
 .env
+web/db_data
+web/wp-content
+web/wp-config.php

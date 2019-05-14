@@ -35,9 +35,8 @@ by your [Blackfire credentials](https://blackfire.io/my/settings/credentials) (y
 make blackfire "curl nginx/?p=1"
 ```
 
-***Profil PHP file***
+***Profil PHP file with blackfire***
 
-Run
 ```
 docker-compose run php blackfire run php <php-file-to-tests.php>
 ```

@@ -5,6 +5,8 @@ services:
     image: wodby/mariadb:$MARIADB_TAG
     container_name: "${PROJECT_NAME}_mariadb"
     stop_grace_period: 30s
+    volumes:
+      - './db_data:/var/lib/mysql'
     environment:
       MYSQL_ROOT_PASSWORD: $DB_ROOT_PASSWORD
       MYSQL_DATABASE: $DB_NAME
@@ -12,7 +14,7 @@ services:
       MYSQL_PASSWORD: $DB_PASSWORD
 
   php:
-    image: wodby/wordpress-php:$PHP_TAG
+    build: .
     container_name: "${PROJECT_NAME}_php"
     environment:
       PHP_SENDMAIL_PATH: /usr/sbin/sendmail -t -i -S mailhog:1025
@@ -95,4 +97,3 @@ services:
 ## Docker-sync for macOS users
 #  docker-sync:
 #    external: true
-

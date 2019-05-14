@@ -18,7 +18,7 @@ In `.env` file, complete these fields:
 by your [Blackfire credentials](https://blackfire.io/my/settings/credentials) (you need to log in).
 
 
-* Clone this repository, in `web` folder. Execute "make up" in the terminal.
+* Clone this repository. In the `web` folder, executes "make up" command using the terminal.
 * Access "http://wp.docker.localhost:8000"
 * The End.
 

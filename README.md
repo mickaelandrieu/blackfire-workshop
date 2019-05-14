@@ -2,6 +2,8 @@
 
 ## How to
 
+> Everything related to Docker lives in the "web" directory.
+
 Copy `.env.dist` file to `.env` file.
 
 ### Configure Blackfire

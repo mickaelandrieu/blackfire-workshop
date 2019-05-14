@@ -35,6 +35,13 @@ by your [Blackfire credentials](https://blackfire.io/my/settings/credentials) (y
 make blackfire "curl nginx/?p=1"
 ```
 
+***Profil PHP file***
+
+Run
+```
+docker-compose run php blackfire run php <php-file-to-tests.php>
+```
+
 On Mac
 
 ```
@@ -57,8 +64,3 @@ to your `/etc/hosts` (for linux, mac?) or `C:\Windows\System32\drivers\etc\hosts
 ### Still stuck?
 
 Read [this](https://wodby.com/docs/stacks/wordpress/local/#usage) please.
-
-Run
-```
-docker-compose run php blackfire run php <php-file-to-tests.php>
-```

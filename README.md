@@ -47,7 +47,7 @@ docker-compose run blackfire blackfire curl "nginx/?p=1"
 
 On Google Chrome, should works else add the virtual host:
 
-Add 
+Add
 ```
 127.0.0.1 wp.docker.localhost
 ```
@@ -57,3 +57,8 @@ to your `/etc/hosts` (for linux, mac?) or `C:\Windows\System32\drivers\etc\hosts
 ### Still stuck?
 
 Read [this](https://wodby.com/docs/stacks/wordpress/local/#usage) please.
+
+Run
+```
+docker-compose run php blackfire run php <php-file-to-tests.php>
+```
